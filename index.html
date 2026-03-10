@@ -19,12 +19,14 @@
         <div class="pergunta">
             <h3>Você me ama?</h3>
             <div class="botoes">
-                <button onclick="responder('sim')">SIM</button>
-                <button id="btn-nao" onmouseover="fuga()">NÃO</button>
+                <button onclick="aceitar()">SIM</button>
+                <button id="btn-nao" onmouseover="fuga()" onclick="fuga()" ontouchstart="fuga()">NÃO</button>
             </div>
         </div>
-        </div>
     </div>
+    
+    <div id="coracoes-container"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
