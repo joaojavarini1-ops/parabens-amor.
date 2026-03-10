@@ -9,85 +9,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        /* MANTENDO SEU ESTILO ORIGINAL */
         body {
+            background-color: #ffdee5; /* Cor de fundo suave */
             font-family: 'Quicksand', sans-serif;
-            background: radial-gradient(circle, #fff5f7 0%, #ffdee5 100%);
-            height: 100vh;
-            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            color: #4a4a4a;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
         }
 
         .container {
-            z-index: 5;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.6);
+            background: white;
             padding: 40px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            max-width: 450px;
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+            border-radius: 20px;
+            /* O SEU SOMBREADO QUE VOCÊ GOSTA */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            text-align: center;
+            max-width: 500px;
+            z-index: 10;
         }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #ff4d6d; margin-bottom: 10px; }
-        #contador { font-size: 1.1rem; font-weight: bold; color: #d63384; margin-bottom: 25px; }
+        h1 { color: #ff4d6d; font-family: 'Dancing Script', cursive; font-size: 2.5rem; }
+        
+        .mensagem-box {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #ff4d6d;
+            background: #fffafa;
+            text-align: left;
+        }
 
-        .botoes { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
-
+        /* BOTÕES ORIGINAIS */
+        .botoes { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
         button {
-            padding: 12px 25px;
+            padding: 10px 25px;
             border: none;
-            border-radius: 50px;
-            font-weight: bold;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
             transition: 0.3s;
         }
-
-        .btn-sim { background: #ff4d6d; color: white; }
+        button[onclick*='sim'] { background: #ff4d6d; color: white; }
         #btn-nao { background: #bdc3c7; color: white; position: relative; }
 
-        /* Estilo do Botão da Saudade */
-        .secao-saudade {
-            margin-top: 30px;
-            border-top: 1px dashed #ffb6c1;
-            padding-top: 20px;
-        }
-
-        .btn-saudade {
-            background: #ffffff;
-            color: #ff4d6d;
-            border: 2px solid #ff4d6d;
-            font-size: 1rem;
+        /* ADIÇÃO DAS POLAROIDS NO CANTO (SEM ATRAPALHAR O CENTRO) */
+        .mural-polaroid {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0 auto;
+            flex-direction: column;
         }
+        .polaroid {
+            background: white;
+            padding: 8px 8px 20px 8px;
+            box-shadow: 3px 5px 15px rgba(0,0,0,0.2);
+            width: 140px;
+            margin-bottom: -15px;
+            transform: rotate(5deg);
+        }
+        .polaroid img { width: 100%; height: 120px; object-fit: cover; }
+        .p2 { transform: rotate(-8deg); margin-right: 20px; }
 
-        .btn-saudade:hover { background: #fff0f3; transform: translateY(-3px); }
-        .contagem-saudade { font-size: 0.8rem; margin-top: 8px; color: #ff8fa3; }
-
-        /* Polaroids */
-        .mural-polaroid { position: fixed; right: 40px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; }
-        .polaroid { background: white; padding: 10px 10px 30px 10px; box-shadow: 5px 10px 25px rgba(0,0,0,0.1); width: 160px; transition: 0.4s; cursor: pointer; border: 1px solid #eee; margin-bottom: -20px; }
-        .polaroid img { width: 100%; height: 140px; object-fit: cover; }
-        .polaroid p { font-family: 'Dancing Script', cursive; font-size: 1rem; margin-top: 10px; color: #555; }
-        .p1 { transform: rotate(8deg); }
-        .p2 { transform: rotate(-6deg); margin-right: 20px; }
-        .p3 { transform: rotate(4deg); }
-        .polaroid:hover { transform: scale(1.1) rotate(0deg); z-index: 100; }
-
-        @media (max-width: 768px) {
-            .mural-polaroid { position: static; transform: none; flex-direction: row; justify-content: center; margin-top: 20px; }
-            body { overflow: auto; height: auto; padding: 20px; }
-            .polaroid { width: 100px; }
-            .polaroid img { height: 80px; }
+        /* NOVO BOTÃO DA SAUDADE */
+        .btn-saudade {
+            margin-top: 25px;
+            background: none;
+            border: 1px solid #ff4d6d;
+            color: #ff4d6d;
+            border-radius: 20px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -95,67 +90,58 @@
 
     <div class="container">
         <h1>Nosso tempo juntos</h1>
-        <div id="contador">Carregando amor...</div>
+        <div id="contador">Calculando...</div>
         
+        <div class="mensagem-box">
+            <h2 id="titulo-msg">Minha princesa...</h2>
+            <div id="texto-maquina">
+                COLE AQUI O SEU TEXTO QUE VOCÊ DEMOROU MESES PARA ESCREVER ❤️
+            </div>
+        </div>
+
         <div class="pergunta">
             <h3>Você me ama?</h3>
             <div class="botoes">
-                <button class="btn-sim" onclick="responderSim()">SIM!</button>
+                <button onclick="responderSim()">SIM</button>
                 <button id="btn-nao" onmouseover="fuga()">NÃO</button>
             </div>
         </div>
 
-        <div class="secao-saudade">
-            <button class="btn-saudade" onclick="enviarSaudade()">
-                Aperte se estiver com saudade ❤️
-            </button>
-            <p class="contagem-saudade" id="msg-saudade"></p>
-        </div>
+        <button class="btn-saudade" onclick="enviarSaudade()">Estou com saudade ❤️</button>
     </div>
 
     <div class="mural-polaroid">
-        <div class="polaroid p1"><img src="foto1.jpg"><p>Nosso dia</p></div>
-        <div class="polaroid p2"><img src="foto2.jpg"><p>Te amo</p></div>
-        <div class="polaroid p3"><img src="foto3.jpg"><p>Pra sempre</p></div>
+        <div class="polaroid p1"><img src="foto1.jpg"></div>
+        <div class="polaroid p2"><img src="foto2.jpg"></div>
     </div>
 
     <script>
-        // Contador de Tempo (Ajuste sua data aqui!)
-        function atualizarContador() {
-            const inicio = new Date("2023-01-01T00:00:00"); 
-            const agora = new Date();
-            const diff = agora - inicio;
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("contador").innerHTML = `${dias} dias de muita história!`;
-        }
-        setInterval(atualizarContador, 1000);
-        atualizarContador();
-
-        // Botão que foge
+        // MANTIVE SUA LÓGICA DE FUGA
         function fuga() {
             const btn = document.getElementById('btn-nao');
-            btn.style.position = 'fixed';
             btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
             btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            btn.style.position = 'fixed';
         }
 
         function responderSim() {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-            alert("Eu também te amo demais! ❤️");
+            confetti({ particleCount: 150, spread: 70 });
+            alert("Eu sabia! Também te amo muito! ❤️");
         }
 
-        // Lógica da Saudade
-        let cliquesSaudade = 0;
         function enviarSaudade() {
-            cliquesSaudade++;
-            
-            // Chuva de corações usando a biblioteca de confete
-            const defaults = { spread: 360, ticks: 50, gravity: 0, decay: 0.94, startVelocity: 30, shapes: ['heart'], colors: ['ff0000', 'ff69b4', 'ff1493'] };
-            confetti({ ...defaults, particleCount: 40, scalar: 2 });
-            confetti({ ...defaults, particleCount: 10, scalar: 3 });
-
-            document.getElementById("msg-saudade").innerText = `Você já enviou saudade ${cliquesSaudade}x hoje!`;
+            const scalar = 2;
+            const heart = confetti.shapeFromPath({ path: 'M167 10c-75 0-75 78-75 78s0 78 75 78 75-78 75-78 0-78-75-78z' });
+            confetti({ particleCount: 40, spread: 360, shapes: [heart], colors: ['#ff4d6d'] });
         }
+
+        // Contador simples
+        function atualizarContador() {
+            const inicio = new Date("2023-01-01T00:00:00"); // Ajuste sua data!
+            const dias = Math.floor((new Date() - inicio) / (1000 * 60 * 60 * 24));
+            document.getElementById("contador").innerText = dias + " dias de puro amor";
+        }
+        atualizarContador();
     </script>
 </body>
 </html>
