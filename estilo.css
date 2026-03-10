@@ -11,6 +11,7 @@ body {
     background-position: center;
     background-attachment: fixed;
     color: white;
+    overflow-x: hidden; /* Evita barra de rolagem lateral na fuga do botão */
 }
 
 .container {
@@ -22,6 +23,8 @@ body {
     width: 90%;
     text-align: center;
     margin: 20px;
+    position: relative;
+    z-index: 10;
 }
 
 h1 { color: #ff4d6d; font-size: 1.8rem; }
@@ -45,7 +48,6 @@ h1 { color: #ff4d6d; font-size: 1.8rem; }
     padding-right: 10px;
 }
 
-/* Estilizando a barra de rolagem do texto */
 .mensagem-box::-webkit-scrollbar { width: 5px; }
 .mensagem-box::-webkit-scrollbar-thumb { background: #ff4d6d; border-radius: 10px; }
 
@@ -60,6 +62,29 @@ button {
 }
 
 button:first-of-type { background: #ff4d6d; color: white; }
-#btn-nao { background: #555; color: white; }
 
-.musica audio { width: 100%; height: 30px; margin-top: 10px; }
+/* Ajuste no botão NÃO para transição suave */
+#btn-nao { 
+    background: #555; 
+    color: white; 
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+/* --- ANIMAÇÃO DOS CORAÇÕES --- */
+.heart {
+    position: fixed;
+    top: -10vh;
+    font-size: 2rem;
+    color: #ff4d6d;
+    user-select: none;
+    pointer-events: none;
+    z-index: 9999;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
