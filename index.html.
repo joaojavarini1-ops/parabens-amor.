@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o meu amor ❤️</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <audio id="musicaFundo" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="overlay" onclick="iniciarSite()">
+        <h1 class="texto-evapora">Parabéns meu amor!!</h1>
+        <span class="piscar">Toque para iniciar</span>
+    </div>
+
+    <div id="site" class="escondido">
+        <header>
+            <h1 class="titulo-principal">Nosso tempo juntos</h1>
+            <div id="contador"></div>
+        </header>
+
+        <main>
+            <button class="btn-pergunta" onclick="mostrarPergunta()">Tenho uma pergunta...</button>
+
+            <div id="pergunta" class="escondido card-pergunta">
+                <h2>Você me ama?</h2>
+                <div class="area-botoes">
+                    <button id="btnSim" onclick="respostaSim()">SIM</button>
+                    <button id="btnNao" onmouseover="foge()">NÃO</button>
+                </div>
+            </div>
+
+            <div id="surpresa" class="escondido">
+                <div class="card-vibrante">
+                    <h2 class="fonte-titulo">Minha princesa...</h2>
+                    <div id="maquina-escrever"></div>
+                </div>
+
+                <div class="card-vibrante">
+                    <h3 class="fonte-titulo">a nossa música meu amor ❤️</h3>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/25Y8r166JmY5Z2N6o6jR3m" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+
+                <div class="card-vibrante">
+                    <h3 class="fonte-titulo">📍 Nossa História em Timóteo</h3>
+                    <div class="mapa-links">
+                        <a href="https://www.google.com/maps/search/IMETT+Timoteo" target="_blank" class="link-local">🏫 Onde tudo começou (IMETT)</a>
+                        <a href="https://www.google.com/maps/search/Prefeitura+de+Timoteo" target="_blank" class="link-local">💋 Nosso primeiro beijo</a>
+                        <a href="https://www.google.com/maps/search/Praça+do+Coreto+Timoteo" target="_blank" class="link-local">🛖 Praça do Coreto</a>
+                        <a href="https://www.google.com/maps/search/Praça+do+Coliseu+Timoteo" target="_blank" class="link-local">🏛️ Praça do Coliseu</a>
+                    </div>
+                </div>
+
+                <button class="btn-saudade" onclick="enviarSaudade()">Tô com saudade 🥺</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
