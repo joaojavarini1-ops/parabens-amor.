@@ -11,14 +11,43 @@ body {
     background-position: center;
     background-attachment: fixed;
     color: white;
-    overflow-x: hidden; /* Evita barra de rolagem lateral na fuga do botão */
+    overflow-x: hidden;
+}
+
+/* Estilo da Capa Preta */
+#capa-entrada {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+}
+
+.conteudo-capa h1 {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Efeito de sucção (diminui e some) */
+.sugando {
+    transform: scale(0);
+    opacity: 0;
 }
 
 .container {
     background: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 0 25px rgba(255, 77, 109, 0.4);
+    box-shadow: 0 0 25px rgba(255, 77, 109, 0.4); /* Seu LED rosa */
     max-width: 500px;
     width: 90%;
     text-align: center;
@@ -63,7 +92,6 @@ button {
 
 button:first-of-type { background: #ff4d6d; color: white; }
 
-/* Ajuste no botão NÃO para transição suave */
 #btn-nao { 
     background: #555; 
     color: white; 
@@ -71,7 +99,6 @@ button:first-of-type { background: #ff4d6d; color: white; }
     z-index: 1000;
 }
 
-/* --- ANIMAÇÃO DOS CORAÇÕES --- */
 .heart {
     position: fixed;
     top: -10vh;
@@ -84,7 +111,5 @@ button:first-of-type { background: #ff4d6d; color: white; }
 }
 
 @keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
-    }
+    to { transform: translateY(110vh) rotate(360deg); }
 }
