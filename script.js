@@ -1,69 +1,130 @@
-const dataInicio = new Date(2025, 6, 12, 0, 0, 0); 
-const textoParaEscrever = `Feliz aniversário, meu amor, e feliz aniversário para a gente 💓\n\nHoje é um dia que tem um significado enorme para mim, meu bem. É o dia em que o mundo ganhou a pessoa mais incrível que eu já conheci, a minha princesa, a minha flor, o meu amor. E ao mesmo tempo, também é um dia que celebra algo muito especial para mim: a nossa história. Porque hoje não é só o seu aniversário, mas também mais um capítulo da nossa caminhada juntos.\n\nMeu bem, eu fico pensando em como a vida é cheia de caminhos inesperados. Entre tantas pessoas no mundo, entre tantas histórias diferentes, foi justamente você que apareceu na minha vida. E desde o momento em que você entrou nela, tudo começou a fazer mais sentido.\n\nMinha princesa, você tem uma luz dentro de você que é impossível de ignorar. Seu jeito, sua alegria, sua forma de enxergar as coisas… tudo em você tem algo especial. É como se sua presença tivesse o poder de deixar qualquer lugar mais bonito, mais leve e mais cheio de vida.\n\nMeu amor, nesses oito meses ao seu lado eu aprendi coisas que eu nunca tinha sentido antes. Aprendi que o amor não está só nas grandes declarações, mas também nos pequenos momentos: nas conversas simples, nas risadas que parecem não ter fim, nos instantes em que só estar perto já é suficiente.\n\nMinha flor, você se tornou uma das partes mais importantes da minha vida. Quando penso no meu futuro, quando penso nos sonhos que quero realizar, você sempre aparece neles. Porque hoje eu não consigo imaginar minha vida sem você fazendo parte dela.\n\nMeu bem, hoje eu quero que você saiba o quanto você é especial para mim. Você é aquela pessoa que consegue transformar um dia normal em algo inesquecível. Seu sorriso tem uma força que acalma meu coração e sua presença me faz sentir uma paz que eu nunca tinha conhecido antes.\n\nMinha princesa, completar 15 anos é algo muito especial. É uma fase linda da vida, cheia de sonhos, descobrições e momentos que vão marcar para sempre o seu coração. E eu me sinto muito feliz por poder estar ao seu lado justamente nesse momento tão importante.\n\nMeu amor, se eu pudesse te dar um presente capaz de mostrar tudo o que sinto, ele seria algo impossível de colocar em uma caixa. Porque o que eu sinto por você é grande demais para caber em palavras simples.\n\nMinha flor, você é mais do que minha namorada. Você é minha companheira, minha alegria, meu abraço nos dias difíceis e o motivo de muitos dos meus sorrisos.\n\nMeu bem, eu agradeço todos os dias por ter você na minha vida. Agradeço por cada conversa, por cada momento, por cada lembrança que estamos criando juntos.\n\nMinha princesa, eu prometo continuar cuidando de você, respeitando você, apoiando você e fazendo de tudo para ver esse seu sorriso lindo todos os dias.\n\nMeu amor, feliz aniversário. Feliz aniversário para você, e feliz aniversário para a nossa história também. Que esse seja apenas mais um capítulo de muitos que ainda vamos viver juntos.\n\nEu te amooo infinitamente minha vida 🤍✨`;
+// Lógica da Senha
+function moveNext(input, index) {
+    if (input.value.length === 1) {
+        const nextInput = document.querySelectorAll('.digit')[index];
+        if (nextInput) nextInput.focus();
+    }
+}
 
-const velocidade = 20; 
-let i = 0;
+function validar() {
+    const senha = Array.from(document.querySelectorAll('.digit')).map(i => i.value).join('');
+    if (senha === "1207") { // SUA SENHA
+        iniciarJornada();
+    } else {
+        document.getElementById('status').innerText = "Senha incorreta, tente de novo...";
+        document.querySelectorAll('.digit').forEach(i => i.value = "");
+        document.querySelectorAll('.digit')[0].focus();
+    }
+}
 
-// Função para a capa sumir e começar o site
-function entrar() {
-    const capa = document.getElementById('capa-entrada');
-    capa.classList.add('sugando'); // Ativa o efeito de sucção
+// Controle das Fases
+function iniciarJornada() {
+    // FASE 1: Some o cadeado rosa
+    document.getElementById('fase-cadeado').classList.add('sumir');
     
     setTimeout(() => {
-        capa.style.display = 'none';
-        escrever(); // Só começa a escrever depois que a capa sai
-    }, 1000);
-}
-
-function atualizarContador() {
-    const agora = new Date();
-    const dif = agora - dataInicio;
-    const dias = Math.floor(dif / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((dif / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((dif / (1000 * 60)) % 60);
-    const segundos = Math.floor((dif / 1000) % 60);
-    document.getElementById('contador').innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-}
-setInterval(atualizarContador, 1000);
-atualizarContador();
-
-function escrever() {
-    if (i < textoParaEscrever.length) {
-        let char = textoParaEscrever.charAt(i);
-        document.getElementById("texto-maquina").innerHTML += char === "\n" ? "<br>" : char;
-        i++;
-        setTimeout(escrever, velocidade);
-    }
-}
-
-// Funções dos botões
-function aceitar() {
-    document.getElementById('titulo-msg').innerText = "Eu te amo infinitamente! ❤️✨";
-    chuvaDeCoracoes();
-}
-
-function fuga() {
-    const btn = document.getElementById('btn-nao');
-    const larguraTela = window.innerWidth - btn.offsetWidth;
-    const alturaTela = window.innerHeight - btn.offsetHeight;
-    const randomX = Math.random() * larguraTela;
-    const randomY = Math.random() * alturaTela;
-    btn.style.position = 'fixed';
-    btn.style.left = randomX + 'px';
-    btn.style.top = randomY + 'px';
-}
-
-function chuvaDeCoracoes() {
-    for (let j = 0; j < 50; j++) {
+        // FASE 2: Aparece a Galáxia devagar
+        const galaxia = document.getElementById('fase-galaxia');
+        galaxia.style.display = 'block';
+        setTimeout(() => { galaxia.style.opacity = '1'; }, 100);
+        gerarEstrelas();
+        
+        // FASE 2.1: Aparece o Coração Gigante
         setTimeout(() => {
-            const coracao = document.createElement('div');
-            coracao.classList.add('heart');
-            coracao.innerHTML = '❤️';
-            coracao.style.left = Math.random() * 100 + 'vw';
-            coracao.style.animationDuration = (Math.random() * 2 + 2) + 's';
-            coracao.style.opacity = Math.random();
-            document.body.appendChild(coracao);
-            setTimeout(() => coracao.remove(), 4000);
-        }, j * 100);
-    }
+            document.getElementById('coracao').style.opacity = '1';
+        }, 3500); // Aparece 3.5 segundos depois da galáxia começar
+        
+        // FASE 3: Entra o Ursinho Atirador
+        setTimeout(() => {
+            const fAtirador = document.getElementById('fase-atirador');
+            fAtirador.style.display = 'flex'; // Usar flex para centralizar o ursinho se for o caso
+            const ursinho = document.getElementById('ursinho');
+            ursinho.style.left = "15%"; // Ursinho entra na tela
+            
+            // FASE 3.1: O Ursinho Atira
+            setTimeout(() => {
+                const bullet = document.getElementById('bullet');
+                bullet.style.display = 'block';
+                bullet.style.left = ursinho.getBoundingClientRect().right - 30 + 'px'; // Posição do ursinho
+                bullet.style.bottom = ursinho.getBoundingClientRect().height / 2 + 'px'; // Altura da mira
+                
+                // Animação da bala
+                setTimeout(() => {
+                    bullet.style.transition = "1s linear";
+                    bullet.style.left = "50%"; // Mira o centro
+                    bullet.style.bottom = "50%"; // Mira o centro
+                    
+                    // FASE 4: O Livro 3D aparece no centro
+                    setTimeout(() => {
+                        const livro = document.getElementById('fase-livro');
+                        livro.classList.add('aparecer');
+                        setTimeout(() => { livro.style.opacity = '1'; }, 100);
+                        bullet.remove(); // Remove a bala
+                    }, 1000); // 1 segundo depois da bala chegar no centro
+                }, 100);
+            }, 3000); // Ursinho espera 3 segundos para atirar
+        }, 8000); // Atirador aparece 8 segundos depois da galáxia começar
+        
+    }, 1500); // Cadeado some em 1.5 segundos
 }
+
+// Gerador de Estrelas no Canvas
+function gerarEstrelas() {
+    const canvas = document.getElementById('canvas-stars');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const stars = [];
+    
+    for (let i = 0; i < 300; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 1.5,
+            opacity: Math.random()
+        });
+    }
+    
+    function animar() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(s => {
+            ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        requestAnimationFrame(animar);
+    }
+    animar();
+}
+
+// Lógica para Virar as Páginas do Livro
+document.addEventListener('DOMContentLoaded', () => {
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 0; // Começa na capa
+    
+    // Configura a z-index inicial para todas as páginas
+    pages.forEach((page, index) => {
+        page.style.zIndex = pages.length - index;
+    });
+    
+    pages.forEach((page, index) => {
+        page.addEventListener('click', () => {
+            if (index === currentPage && !page.classList.contains('flipped')) {
+                // Virar a página para a direita
+                page.classList.add('flipped');
+                currentPage++;
+                // Troca o z-index da próxima página para ela aparecer na frente
+                if (currentPage < pages.length) {
+                    pages[currentPage].style.zIndex = pages.length + 1;
+                }
+            } else if (index === currentPage - 1 && page.classList.contains('flipped')) {
+                // Virar a página de volta para a esquerda
+                page.classList.remove('flipped');
+                currentPage--;
+                // Troca o z-index da página anterior
+                page.style.zIndex = pages.length - index;
+            }
+        });
+    });
+});
