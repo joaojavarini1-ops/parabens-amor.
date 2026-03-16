@@ -1,0 +1,177 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    background: #000; 
+    overflow: hidden; 
+    font-family: 'Montserrat', sans-serif; 
+}
+
+/* FASE 1 - CADEADO ROSA */
+#fase-cadeado {
+    position: fixed; width: 100%; height: 100vh;
+    background: #ff85a2;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 100; transition: 1.5s ease;
+}
+
+.lock-container {
+    background: #ff4d6d;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 0 #c9184a;
+    text-align: center;
+}
+
+.titulo-lock { font-family: 'Cinzel', serif; color: white; margin-bottom: 20px; }
+
+.inputs-senha { display: flex; gap: 10px; margin-bottom: 15px; }
+
+.digit {
+    width: 55px; height: 75px;
+    background: #592d34;
+    border-radius: 12px;
+    border: none;
+    color: #ff85a2;
+    font-size: 2.2rem;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+}
+
+#status { color: white; font-size: 0.8rem; font-style: italic; opacity: 0.8; }
+
+/* FASE 2 - GALÁXIA E CORAÇÃO */
+#fase-galaxia {
+    position: fixed; width: 100%; height: 100vh;
+    opacity: 0; display: none; z-index: 50;
+    transition: 4s ease-in-out;
+    background: radial-gradient(circle at center, #1b1b2f 0%, #000 100%); /* Fundo galáxia */
+}
+
+#canvas-stars { position: absolute; width: 100%; height: 100%; }
+
+.coracao-gigante {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 150px;
+    filter: drop-shadow(0 0 50px #ff0055); /* Brilho no coração */
+    opacity: 0;
+    transition: 5s ease;
+}
+
+/* FASE 3 - ATIRADOR */
+#fase-atirador {
+    position: fixed; width: 100%; height: 100vh;
+    display: none; z-index: 60;
+}
+
+.ursinho {
+    width: 140px;
+    position: absolute;
+    bottom: 15%;
+    left: -200px;
+    transition: 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bullet {
+    position: absolute;
+    width: 12px; height: 12px;
+    background: #ff0055;
+    border-radius: 50%;
+    display: none;
+    box-shadow: 0 0 15px #ff0055;
+}
+
+/* FASE 4 - LIVRO 3D COM ANIMAÇÃO DE VIRAR */
+#fase-livro {
+    position: fixed; width: 100%; height: 100vh;
+    display: none; background: rgba(0,0,0,0.85);
+    justify-content: center; align-items: center; z-index: 150;
+    opacity: 0; transition: 1.5s;
+}
+
+.book-container {
+    perspective: 1500px; /* Profundidade 3D */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-3d {
+    width: 350px;
+    height: 480px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    background: #f4e1d2;
+    border: 1px solid #d1bfa7;
+    box-shadow: inset 7px 0 30px -7px rgba(0,0,0,0.2); /* Sombra da dobra */
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    cursor: pointer;
+    padding: 20px;
+    overflow-y: auto; /* Para o texto rolar se for muito longo */
+    -webkit-overflow-scrolling: touch; /* Scroll suave no celular */
+}
+
+.page::-webkit-scrollbar { display: none; } /* Esconder scrollbar */
+
+.page.flipped {
+    transform: rotateY(-180deg);
+    z-index: 1; /* Garante que a página virada fica por cima */
+}
+
+.cover {
+    background: #4a0404;
+    color: #c5a059;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 30; /* Capa sempre na frente */
+    border: 2px solid #c5a059;
+}
+
+.cover h1 { font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 10px; }
+.cover p { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-style: italic; margin-bottom: 20px; }
+.cover small { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
+
+
+.page-content {
+    color: #4a0404;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+}
+
+.page-content h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #d1bfa7;
+    padding-bottom: 5px;
+}
+
+.page-content img {
+    width: 100%;
+    border-radius: 5px;
+    margin: 15px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: rotate(2deg); /* Um leve giro para parecer mais natural */
+}
+
+.page-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: justify; /* Texto alinhado */
+}
+
+/* Animações Auxiliares */
+.sumir { opacity: 0 !important; pointer-events: none; }
+.aparecer { display: flex !important; }
