@@ -3,35 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para o meu amor ❤️</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Para a mô mulher que eu tanto amo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@1,700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="capa-entrada" onclick="entrar()">
-        <div class="conteudo-capa">
-            <h1>Feliz aniversario minha princesa❤️</h1>
+    <div id="fase-cadeado">
+        <div class="lock-container">
+            <h2 class="titulo-lock">🔒 NOSSA CHAVE</h2>
+            <div class="inputs-senha">
+                <input type="number" class="digit" maxlength="1" oninput="moveNext(this, 1)">
+                <input type="number" class="digit" maxlength="1" oninput="moveNext(this, 2)">
+                <input type="number" class="digit" maxlength="1" oninput="moveNext(this, 3)">
+                <input type="number" class="digit" maxlength="1" oninput="validar()">
+            </div>
+            <p id="status">Digite nossa data especial</p>
         </div>
     </div>
 
-    <div class="container">
-        <h1>Nosso tempo juntos</h1>
-        <div id="contador">Tempo de carregamento...</div>
-        
-        <div class="mensagem-box">
-            <h2 id="titulo-msg">Minha princesa...</h2>
-            <div id="texto-maquina"></div>
-        </div>
+    <div id="fase-galaxia">
+        <canvas id="canvas-stars"></canvas>
+        <div class="coracao-gigante" id="coracao">❤️</div>
+    </div>
 
-        <div class="pergunta">
-            <h3>Você me ama?</h3>
-            <div class="botoes">
-                <button onclick="aceitar()">SIM</button>
-                <button id="btn-nao" onmouseover="fuga()" onclick="fuga()" ontouchstart="fuga()">NÃO</button>
+    <div id="fase-atirador">
+        <div id="ursinho" class="ursinho" style="font-size: 50px;">🧸</div> 
+        <div id="bullet" class="bullet"></div>
+    </div>
+
+    <div id="fase-livro">
+        <div class="book-container">
+            <div class="book-3d" id="book">
+                
+                <div class="page cover">
+                    <h1 class="book-title">Nosso Universo</h1>
+                    <p>Uma história escrita à mão pelas estrelas e guardada no fundo do meu coração.</p>
+                    <small>Clique para abrir o primeiro capítulo desta jornada</small>
+                </div>
+
+                <div class="page">
+                    <div class="page-content">
+                        <h2>1. O Primeiro Brilho</h2>
+                        <p>Lembro-me com detalhes do dia em que nossos olhares se cruzaram pela primeira vez. Foi um instante mágico, como se o universo inteiro fizesse um silêncio respeitoso apenas para nos apresentar. Naquele segundo, eu não sabia, mas minha vida estava mudando para sempre.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>2. O Frio na Barriga</h2>
+                        <p>Cada palavra trocada e cada risada compartilhada traziam aquele frio na barriga que eu achei que só existia em livros. Era o meu coração batendo em um ritmo novo, um aviso constante e doce de que eu finalmente havia encontrado a pessoa que eu sempre esperei sem saber.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>3. Meu Mundo Mudou</h2>
+                        <p>Com você, a vida ganhou cores vibrantes que eu nem sabia que faziam parte do espectro visível. Meu mundo, que antes parecia um filme antigo em preto e branco, transformou-se em uma obra de arte viva, onde cada dia ao seu lado é uma nova pincelada de alegria e vivacidade.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>4. Seus Olhos</h2>
+                        <p>Amo o brilho único que surge nos seus olhos quando você ri de uma bobagem qualquer que eu disse. Esse olhar é o meu sol particular, a luz que atravessa os meus dias mais cinzentos e me lembra que, não importa o que aconteça lá fora, aqui dentro tudo está iluminado por você.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>5. Nosso Cantinho</h2>
+                        <p>Nosso canto no mundo não é necessariamente um lugar físico, mas qualquer espaço onde estejamos juntos. É aquele refúgio sagrado onde só nós entendemos os silêncios e os significados. É o lugar onde minha alma finalmente descansa e encontra a paz que tanto procurou.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>6. A Paz que Você Traz</h2>
+                        <p>Você é a calmaria necessária no meio da minha tempestade mais barulhenta. O seu abraço tem o poder de silenciar o caos do mundo exterior e reorganizar todos os meus pensamentos. Estar com você é a minha terapia favorita e o meu remédio para qualquer dia difícil.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>7. Seus Abraços</h2>
+                        <p>Cada abraço seu parece um reencontro de almas que se conhecem há milênios. É o meu porto seguro, o meu refúgio contra qualquer medo. Quando você me aperta contra o peito, eu sinto que estou finalmente em casa, independentemente das coordenadas geográficas onde estivermos.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>8. Nossos Segredos</h2>
+                        <p>As palavras que só a gente entende e aquelas piadas internas que nos fazem rir em momentos aleatórios são os tijolos da nossa cumplicidade. Nossos pequenos segredos e gírias próprias criam um universo paralelo onde só nós dois possuímos a chave de entrada.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>9. Minha Melhor Amiga</h2>
+                        <p>Muito além de ser o amor da minha vida, você é a minha parceira para absolutamente todas as horas. Minha confidente nas incertezas e minha maior incentivadora nas conquistas. Você é a aventura que eu escolho viver todos os dias, com a certeza de que a companhia é perfeita.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>10. O Cheiro que Fica</h2>
+                        <p>Aquele seu perfume característico que insiste em ficar na minha roupa depois que a gente se despede é o meu consolo. É como se eu pudesse levar um pedacinho da sua essência comigo para casa, mantendo a sensação da sua presença viva até o nosso próximo encontro.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>11. Sua Força</h2>
+                        <p>Admiro profundamente a sua garra e a determinação com que você encara os desafios da vida. Você me ensina, sem precisar dizer uma palavra, a nunca desistir e a lutar com coragem pelos meus sonhos. Sua força é a inspiração que me faz querer ser alguém melhor todos os dias.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>12. O Encaixe Perfeito</h2>
+                        <p>É impressionante como nossas mãos se encaixam perfeitamente, como se tivessem sido moldadas uma para a outra. Mas o encaixe mais bonito é o das nossas almas, que conversam na mesma frequência e se completam de uma forma que desafia qualquer explicação lógica ou racional.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>13. Nossas Conversas</h2>
+                        <p>As madrugadas que perdemos mergulhados em conversas profundas sobre tudo e sobre nada são os meus momentos favoritos. Nesses diálogos, eu me perco na imensidão dos seus pensamentos e acabo me encontrando de uma forma muito mais bonita e completa.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>14. Meus Erros</h2>
+                        <p>Quero te agradecer imensamente por toda a paciência que você tem com os meus defeitos e tropeços. Obrigado por me estender a mão e me ajudar a evoluir, mostrando que o amor de verdade não é sobre ser perfeito, mas sobre querer crescer e aprender um ao lado do outro.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>15. Sua Voz</h2>
+                        <p>Sua voz é, sem dúvida alguma, a minha melodia favorita em todo o mundo. É o som que acalma as minhas ansiedades e que eu desejaria ouvir em um looping eterno. Basta uma palavra sua para que o meu dia ganhe um novo sentido e uma tranquilidade imediata.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>16. A Gratidão</h2>
+                        <p>Sinto uma gratidão eterna ao universo por ter colocado você exatamente no meu caminho. Você é a resposta mais bonita para todas as orações que eu fiz em silêncio e a prova viva de que a felicidade real existe e pode ser encontrada nos detalhes de uma vida a dois.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>17. Seus Sonhos</h2>
+                        <p>Meu maior desejo é estar ao seu lado para ver você realizar cada um dos seus sonhos, dos mais simples aos mais ambiciosos. Quero ser o seu apoio incondicional e, juntos, construirmos os nossos próprios planos, unindo nossas trajetórias em um único e lindo caminho.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>18. O Futuro que Vejo</h2>
+                        <p>Quando fecho os olhos e tento imaginar o futuro, você está em todas as cenas. Vejo cada novo dia como um rascunho de uma vida inteira que eu mal posso esperar para viver ao seu lado, compartilhando os cafés da manhã, as viagens e até as rotinas mais comuns.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>19. Meu "Para Sempre"</h2>
+                        <p>Se alguém me perguntasse hoje qual o significado da expressão "para sempre", eu simplesmente diria o seu nome. Meu amor por você não conhece fronteiras ou limites; ele é uma força infinita que cresce a cada batida do meu coração e a cada novo amanhecer.</p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="page-content">
+                        <h2>20. A Promessa Final</h2>
+                        <p>Prometo amar você com a mesma intensidade em cada nova estrela que surgir no céu e em cada novo capítulo que a vida decidir nos apresentar. Estarei aqui para celebrar suas vitórias e segurar sua mão nas dificuldades. Para todo o sempre, seremos apenas eu e você.</p>
+                    </div>
+                </div>
+                <div class="page cover" style="background: #c5a059; color: #4a0404;">
+                    <h1 class="book-title" style="font-size: 1.5rem;">FIM?</h1>
+                    <p style="margin-top: 15px;">Não, meu amor... Este é apenas o prefácio de uma história eterna que continuaremos escrevendo juntos, dia após dia, com todo o nosso amor.</p>
+                    <small>Com todo o meu amor, Do seu Divo</small>
+                </div>
+                
             </div>
         </div>
     </div>
-    
-    <div id="coracoes-container"></div>
 
     <script src="script.js"></script>
 </body>
